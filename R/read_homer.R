@@ -27,7 +27,7 @@
 #' @author Benjamin Jean-Marie Tremblay, \email{benjamin.tremblay@@uwaterloo.ca}
 #' @inheritParams read_cisbp
 #' @export
-read_homer <- function(file, skip = 0) {
+read_homer <- function(file, alphabet="DNA", skip = 0) {
 
   # TODO: better integration of the motif's own threshold with scan_sequences
 
@@ -87,7 +87,7 @@ read_homer <- function(file, skip = 0) {
                    bkgsites = ifelse(is.na(as.numeric(x[3])), numeric(0),
                                      as.numeric(x[3])),
                    motif = t(y),
-                   alphabet = "DNA",
+                   alphabet = alphabet,
                    type = "PPM",
                    family = x[6],
                    pval = as.numeric(x["pval"]),
