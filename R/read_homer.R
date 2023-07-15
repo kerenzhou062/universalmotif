@@ -61,11 +61,16 @@ read_homer <- function(file, alphabet="DNA", skip = 0) {
 
   parse_meta <- function(x) {
     x <- strsplit(x, "\\s+")[[1]]
-    if (grepl("/", x[2])) {
-      y <- strsplit(x[2], "/")[[1]]
-      y <- strsplit(y[1], "\\(")[[1]]
+    #if (grepl("/", x[2])) {
+    #  y <- strsplit(x[2], "/")[[1]]
+    #  y <- strsplit(y[1], "\\(")[[1]]
+    #  x[2] <- y[1]
+    #  family <- strsplit(y[2], "\\)")[[1]][1]
+    #} else family <- character(0)
+    if (grepl("||", x[2])) {
+      y <- strsplit(x[2], "\\|\\|")[[1]]
       x[2] <- y[1]
-      family <- strsplit(y[2], "\\)")[[1]][1]
+      family <- y[2]
     } else family <- character(0)
     x2 <- strsplit(x[6], ",")[[1]]
     nsites <- strsplit(strsplit(x2[1], "T:")[[1]][2], "\\(")[[1]][1]
